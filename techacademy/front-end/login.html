@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Academy</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body style="background-color: rgb(241, 241, 241)">
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="assets/img/logo.png" alt="Tech Academy">
+        <span>TECH ACADEMY</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="cursos.html">Página de cursos</a></li>
+          <li><a href="#">Painel do aluno</a></li>
+          <li><a href="#">Blog educacional</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a href="cadastro.html"><button class="register">Cadastre-se</button></a>
+        <a href="login.html"><button class="login">Faça login</button></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="login-main">
+    <div class="left-side">
+      <img src="assets/img/logo.png" alt="Logo grande">
+      <h1>TECH ACADEMY</h1>
+      <p>SEU FUTURO COMEÇA AQUI</p>
+    </div>
+
+    <div class="right-side">
+      <form class="login-form" action="/login" method="POST">
+        <h2>Faça login com seu e-mail</h2>
+        <p class="success-message" id="successMessage" style="color: green; display: none; text-align: center;">Cadastro realizado com sucesso! Faça login.</p>
+        <input type="email" name="username" placeholder="seuemail@gmail.com" required>
+        <input type="password" name="password" placeholder="**************" required>
+        <button type="submit" class="btn-login">Login</button>
+
+        <div class="register-link">
+          <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // Verificar parâmetro de sucesso na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const success = urlParams.get('success');
+    if (success === '1') {
+      document.getElementById('successMessage').style.display = 'block';
+      // Opcional: Remover o parâmetro da URL após exibir
+      window.history.replaceState({}, document.title, "/login.html");
+    }
+  </script>
+</body>
+</html>

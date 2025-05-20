@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Academy</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="assets/img/logo.png" alt="Tech Academy" />
+        <span>TECH ACADEMY</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre nós</a></li>
+          <li><a href="cursos.html">Página de cursos</a></li>
+          <li><a href="painelA.html">Painel do aluno</a></li>
+          <li><a href="blog.html">Blog educacional</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a href="cadastro.html"><button class="register">Cadastre-se</button></a>
+        <a href="login.html"><button class="login">Faça login</button></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="overlay"></div>
+      <div class="content">
+        <img src="assets/img/logo.png" alt="Logo central" />
+        <h1>TECH ACADEMY</h1>
+        <p>Seu futuro começa aqui</p>
+        <a href="#sobre"><button class="saiba-mais">Saiba mais</button></a>
+      </div>
+    </section>
+
+    <!-- SOBRE NÓS -->
+    <section id="sobre">
+      <div class="sobre">
+        <div class="nossa-historia">Nossa História</div>
+
+        <img class="image" src="assets/img/inicio.png" alt="Logo Tech Academy Descrição" />
+
+        <div class="a-tech-academy-uma-institui-o-com-mais-de-12-anos-de-experi-ncia-em-educa-o-tecnol-gica-especializada-em-cursos-de-programa-o-desenvolvimento-web-e-inova-o-digital-com-uma-equipe-qualificada-e-uma-metodologia-pr-tica-oferecemos-ensino-de-qualidade-para-formar-profissionais-preparados-para-os-desafios-do-mercado-nossa-miss-o-transformar-vidas-por-meio-da-tecnologia-com-foco-em-inova-o-acessibilidade-e-excel-ncia">
+          A TECH ACADEMY é uma instituição com mais de 12 anos de experiência em
+          educação tecnológica, especializada em cursos de programação,
+          desenvolvimento web e inovação digital.
+          <br /><br />
+          Com uma equipe qualificada e uma metodologia prática, oferecemos ensino de
+          qualidade para formar profissionais preparados para os desafios do
+          mercado. Nossa missão é transformar vidas por meio da tecnologia, com
+          foco em inovação, acessibilidade e excelência.
+        </div>
+
+        <div class="inova-o-o-que-nos-move">INOVAÇÃO É O QUE NOS MOVE</div>
+
+        <img class="cara-aganhado-photoaidcom-darken-1" src="assets/img/cara-aganhado-photoaidcom-darken-1.png" alt="Banner com alunos na sala de aula" />
+
+        <!-- CARD 1 AJUSTADO -->
+        <div class="rectangle-20">
+          <img class="icon-center" src="assets/img/avaliacao 1.png" alt="Ícone Metodologia Ativa">
+          <div class="card-label">Metodologia Ativa</div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="rectangle-21">
+          <img class="icon-center" src="assets/img/rectangle-15.png" alt="Ícone Professores Especialistas">
+          <div class="card-label">Professores Especialistas</div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="rectangle-22">
+          <img class="icon-center" src="assets/img/image-7.png" alt="Ícone Plataforma Online">
+          <div class="card-label">Plataforma 100% Online e preço acessível</div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="rectangle-23">
+          <img class="icon-center" src="assets/img/image-6.png" alt="Ícone Carreira e Mercado">
+          <div class="card-label">Foco em Carreira e Mercado</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CONTATO -->
+  <section class="contatos" id="contato">
+    <div class="contato-info">
+      <h2>Caso ainda tenha alguma dúvida<br>Entre em contato conosco</h2>
+
+      <div class="contato-dados">
+        <p><img src="assets/img/o-email 1.png" alt="ícone email" /> TechAcademy@outlook.com</p>
+        <p><img src="assets/img/telefone 1.png" alt="ícone telefone" /> (98) 98102-3456</p>
+        <p><img src="assets/img/internet 1.png" alt="ícone site" /> www.techAcademy.com.br</p>
+      </div>
+    </div>
+
+    <div class="formulario-contato">
+      <p class="aviso">Envie sua mensagem, em breve retornaremos.</p>
+
+      <form id="contactForm">
+        <input type="text" placeholder="Nome*" name="nome" required />
+        <input type="email" placeholder="Email*" name="email" required />
+        <input type="tel" placeholder="Telefone*" name="telefone" required />
+        <textarea placeholder="Mensagem*" name="mensagem" required></textarea>
+        <button type="submit">Enviar mensagem</button>
+      </form>
+      <div id="formMessage" style="display: none; margin-top: 15px;"></div>
+    </div>
+    <script>
+      document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+    
+      const form = e.target;
+      const formData = new FormData(form);
+      const messageDiv = document.getElementById('formMessage');
+    
+      try {
+        const response = await fetch('/enviar-email', {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+         },
+        body: JSON.stringify(Object.fromEntries(formData))
+      });
+      
+      const result = await response.json();
+      
+      messageDiv.style.display = 'block';
+      if (response.ok) {
+        messageDiv.style.color = 'green';
+        messageDiv.textContent = 'Mensagem enviada com sucesso!';
+        form.reset();
+      } else {
+        messageDiv.style.color = 'red';
+        messageDiv.textContent = result.message || 'Erro ao enviar mensagem.';
+      }
+      
+      // Esconde a mensagem após 5 segundos
+      setTimeout(() => {
+        messageDiv.style.display = 'none';
+      }, 5000);
+     } catch (error) {
+      messageDiv.style.display = 'block';
+      messageDiv.style.color = 'red';
+      messageDiv.textContent = 'Erro de conexão. Tente novamente mais tarde.';
+     }
+     });
+     </script>
+
+  </section>
+</body>
+</html>

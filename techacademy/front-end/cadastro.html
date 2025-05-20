@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Academy - Cadastro</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    .login-form {
+      max-width: 400px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .login-form input {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .login-form button:hover {
+      background-color: #0056b3;
+    }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      display: none;
+    }
+    .terms {
+      margin: 10px 0;
+      font-size: 12px;
+    }
+    .terms a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body style="background-color: rgb(241, 241, 241)">
+  <header>
+    <div class="container">
+      <div class="logo">
+        <img src="assets/img/logo.png" alt="Tech Academy">
+        <span>TECH ACADEMY</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="cursos.html">Página de cursos</a></li>
+          <li><a href="#">Painel do aluno</a></li>
+          <li><a href="#">Blog educacional</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons">
+        <a href="cadastro.html"><button class="register">Cadastre-se</button></a>
+        <a href="login.html"><button class="login">Faça login</button></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="login-main">
+    <div class="left-side">
+      <img src="assets/img/logo.png" alt="Logo grande">
+      <h1>TECH ACADEMY</h1>
+      <p>SEU FUTURO COMEÇA AQUI</p>
+    </div>
+
+    <div class="right-side">
+      <form class="login-form" action="/cadastro" method="POST" id="cadastroForm">
+        <h2>Crie sua conta</h2>
+        <div>
+          <input type="text" name="nome" placeholder="Seu nome completo" required>
+        </div>
+        <div>
+          <input type="email" name="username" placeholder="seuemail@gmail.com" required>
+        </div>
+        <div>
+          <input type="password" name="password" placeholder="Crie uma senha" required>
+        </div>
+        <div>
+          <input type="password" name="confirm_password" placeholder="Confirme sua senha" required>
+          <p class="error-message" id="passwordError">As senhas não coincidem.</p>
+        </div>
+        <div class="terms">
+          <input type="checkbox" name="terms" id="terms" required>
+          <label for="terms">Concordo com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>.</label>
+        </div>
+        <button type="submit" class="btn-login">Cadastrar</button>
+        <a href="login.html" class="back-link">Faça login</a>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+      const password = document.querySelector('input[name="password"]').value;
+      const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+      const passwordError = document.getElementById('passwordError');
+
+      if (password !== confirmPassword) {
+        event.preventDefault();
+        passwordError.style.display = 'block';
+      } else {
+        passwordError.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
